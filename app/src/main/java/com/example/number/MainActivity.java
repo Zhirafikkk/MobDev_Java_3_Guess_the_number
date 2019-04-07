@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvInfo;
     EditText etInput;
     Button bControl;
+
 
     int guess;
     boolean finished;
@@ -36,11 +38,18 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
+    public void onMyButtonClick (View view) {
+        Toast.makeText(this, "Выход", Toast.LENGTH_SHORT).show();
+        finish();
+        System.exit(0);
+    }
 
 
     public void onClick(View view) {
-        if (!finished){
+        if (etInput.getText().length() == 0)
+            tvInfo.setText("Вы еще не ввели число!");
+
+        else if (!finished){
             int value = Integer.parseInt(etInput.getText().toString());
             if (value >= 101)
                 tvInfo.setText(getResources().getString(R.string.error));
@@ -60,5 +69,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         etInput.setText(""); }
+
+
+
+
 }
 
